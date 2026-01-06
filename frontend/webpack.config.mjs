@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { glob } from 'glob';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
@@ -9,6 +10,27 @@ import ejs from 'ejs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// EJSファイルをWebpackの監視対象に追加するプラグイン
+class WatchEjsPlugin {
+  constructor(patterns) {
+    this.patterns = patterns;
+  }
+
+  apply(compiler) {
+    compiler.hooks.afterCompile.tapAsync('WatchEjsPlugin', (compilation, callback) => {
+      // globパターンにマッチするファイルを取得
+      this.patterns.forEach((pattern) => {
+        const files = glob.sync(pattern, { cwd: compiler.context });
+        files.forEach((file) => {
+          const filePath = path.resolve(compiler.context, file);
+          compilation.fileDependencies.add(filePath);
+        });
+      });
+      callback();
+    });
+  }
+}
 
 export default (env, argv) => {
   const isDev = argv.mode === 'development';
@@ -34,15 +56,19 @@ export default (env, argv) => {
 
     return new HtmlWebpackPlugin({
       templateContent: () => {
+        // 開発時はキャッシュを無効化してEJSを毎回読み込む
         const template = fs.readFileSync(templatePath, 'utf-8');
         return ejs.render(template, {}, {
           filename: templatePath,
           root: templatesDir,
+          cache: !isDev,
         });
       },
       filename: `${name}.html`,
       inject: 'body',
       minify: !isDev,
+      // 開発時はキャッシュを無効化
+      cache: !isDev,
     });
   });
 
@@ -52,6 +78,7 @@ export default (env, argv) => {
   }
 
   return {
+    stats: isDev ? 'errors-warnings' : 'normal',
     entry: {
       main: './src/ts/main.ts',
       style: './src/scss/style.scss',
@@ -70,7 +97,13 @@ export default (env, argv) => {
       port: 3000,
       open: true,
       hot: true,
-      watchFiles: ['src/templates/**/*.ejs'],
+      liveReload: true,
+      watchFiles: {
+        paths: ['src/templates/**/*.ejs', 'src/scss/**/*.scss'],
+        options: {
+          usePolling: false,
+        },
+      },
     },
     module: {
       rules: [
@@ -126,6 +159,8 @@ export default (env, argv) => {
           configFile: path.resolve(__dirname, 'tsconfig.json'),
         },
       }),
+      // EJSファイルを監視対象に追加
+      new WatchEjsPlugin(['src/templates/**/*.ejs']),
       ...htmlPlugins,
     ],
     optimization: {
