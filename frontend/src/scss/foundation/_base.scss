@@ -6,16 +6,52 @@ body {
   line-height: $line-height-base;
   color: $color-text;
   background-color: $color-bg;
+  min-height: 100vh;
+  margin: 0;
+}
+
+// Layout container
+.layout_container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .main {
   flex: 1;
 }
 
-// Focus visible
-:focus-visible {
-  outline: 3px solid $color-primary;
-  outline-offset: 2px;
+// Skip link
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  background: $color-primary;
+  color: #fff;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// Utility
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+
+  &.focusable:focus {
+    position: static !important;
+    clip: auto;
+    overflow: visible;
+    height: auto;
+    width: auto;
+  }
 }
 
 // Reduced motion

@@ -3,7 +3,9 @@
     "allow": [
       "Bash(lando version:*)",
       "Bash(composer --version:*)",
-      "Bash(docker:*)"
+      "Bash(docker:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)"
     ]
   }
 }

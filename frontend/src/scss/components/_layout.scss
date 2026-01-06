@@ -1,0 +1,53 @@
+@use '../foundation/variables' as *;
+@use '../foundation/mixin' as *;
+
+// Main layout
+.main_inner {
+  @include content-width;
+  padding-block: 4rem;
+
+  @include mq() {
+    padding-block: 6rem;
+  }
+}
+
+// Sidebar
+.sidebar {
+  background-color: $color-bg-gray;
+  padding-block: 2rem;
+
+  @include mq() {
+    padding-block: 3rem;
+  }
+}
+
+.sidebar_inner {
+  @include content-width;
+}
+
+// Node
+.node {
+  margin-bottom: 3rem;
+}
+
+.node_meta {
+  font-size: 1.4rem;
+  color: $color-text-light;
+  margin-bottom: 1.6rem;
+}
+
+.node_content {
+  line-height: 1.8;
+}
+
+// Block
+.block {
+  margin-bottom: 2rem;
+}
+
+.block h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid $color-primary;
+}

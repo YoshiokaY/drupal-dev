@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Theme implementation to display a single page.
+ */
+#}
+<div class="layout_container">
+  <header class="header" role="banner">
+    <div class="header_inner">
+      {{ page.header }}
+      {% if page.primary_menu %}
+        <nav class="header_nav" role="navigation">
+          {{ page.primary_menu }}
+        </nav>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if page.secondary_menu %}
+    <nav class="secondary_nav" role="navigation">
+      {{ page.secondary_menu }}
+    </nav>
+  {% endif %}
+
+  {% if page.breadcrumb %}
+    <div class="breadcrumb_wrapper">
+      {{ page.breadcrumb }}
+    </div>
+  {% endif %}
+
+  {% if page.highlighted %}
+    <div class="highlighted">
+      {{ page.highlighted }}
+    </div>
+  {% endif %}
+
+  {% if page.help %}
+    <div class="help">
+      {{ page.help }}
+    </div>
+  {% endif %}
+
+  <main class="main" role="main">
+    <a id="main-content" tabindex="-1"></a>
+    <div class="main_inner">
+      <div class="main_content">
+        {{ page.content }}
+      </div>
+
+      {% if page.sidebar_first %}
+        <aside class="sidebar sidebar-first" role="complementary">
+          {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
+
+      {% if page.sidebar_second %}
+        <aside class="sidebar sidebar-second" role="complementary">
+          {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer_inner">
+      {{ page.footer }}
+    </div>
+  </footer>
+</div>

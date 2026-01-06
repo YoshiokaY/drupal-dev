@@ -38,3 +38,5 @@ npm-debug.log*
 
 # Lando
 .lando.local.yml
+/.editorconfig
+/.gitattributes

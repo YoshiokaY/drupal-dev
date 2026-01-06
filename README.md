@@ -4,24 +4,25 @@ Drupal 11 + フロントエンド開発環境
 
 ## 技術スタック
 
-| カテゴリ       | 技術                             |
-| -------------- | -------------------------------- |
-| CMS            | Drupal 11                        |
-| ローカル環境   | Lando + phpMyAdmin + Xdebug      |
-| ビルド         | Webpack + Webpack Dev Server     |
-| CSS            | SCSS                             |
-| JavaScript     | TypeScript                       |
-| テンプレート   | EJS（静的HTML） → Twig（Drupal） |
-| リンター       | ESLint + Stylelint + Prettier    |
-| Git Hooks      | husky + lint-staged              |
+| カテゴリ     | 技術                              |
+| ------------ | --------------------------------- |
+| CMS          | Drupal 11                         |
+| ローカル環境 | DDEV + phpMyAdmin + Xdebug        |
+| ビルド       | Webpack + Webpack Dev Server      |
+| CSS          | SCSS                              |
+| JavaScript   | TypeScript                        |
+| テンプレート | EJS（静的 HTML） → Twig（Drupal） |
+| リンター     | ESLint + Stylelint + Prettier     |
+| Git Hooks    | husky + lint-staged               |
 
 ## ディレクトリ構造
 
 ```
 drupal-dev/
-├── .lando.yml              # Lando設定
-├── .lando/
-│   └── php.ini             # PHP設定（Xdebug含む）
+├── .ddev/                  # DDEV設定
+│   ├── config.yaml
+│   └── scripts/            # 自動化スクリプト
+│       └── setup.sh
 ├── frontend/               # フロントエンド開発環境
 │   ├── src/
 │   │   ├── templates/      # EJSテンプレート
@@ -41,60 +42,46 @@ drupal-dev/
 ### 必要条件
 
 - Docker Desktop
-- Lando v3.6+
+- DDEV v1.24+
 - Node.js 20+
 - npm 10+
 
-### 1. フロントエンド環境のセットアップ
+### クイックスタート（自動セットアップ）
 
 ```bash
+# 1. フロントエンド依存をインストール
 cd frontend
 npm install
+cd ..
+
+# 2. DDEV起動（Drupalが自動でセットアップされます）
+ddev start
 ```
 
-### 2. Drupal環境のセットアップ
+`ddev start` を実行すると、以下が自動で行われます：
+
+- Drupal 11 のインストール
+- Drush のインストール
+- サイトのインストール（日本語設定込み）
+- カスタムテーマの有効化
+- 不要なブロックの非表示
+
+### 確認
 
 ```bash
-# Lando起動（初回は時間がかかります）
-lando start
-
-# Drupal 11をインストール
-lando composer create-project drupal/recommended-project:^11 /tmp/drupal --no-interaction
-lando ssh -c "cp -r /tmp/drupal/* /app/ && cp -r /tmp/drupal/.[!.]* /app/ 2>/dev/null || true"
-
-# Drushインストール
-lando composer require drush/drush
-
-# Drupalサイトインストール
-lando drush site:install standard \
-  --db-url=mysql://drupal11:drupal11@database/drupal11 \
-  --site-name="Drupal Dev" \
-  --account-name=admin \
-  --account-pass=admin \
-  -y
-
-# カスタムテーマを有効化
-lando drush theme:enable my_theme
-lando drush config:set system.theme default my_theme -y
-
-# キャッシュクリア
-lando drush cr
+ddev describe
 ```
 
-### 3. 確認
+| サービス   | URL                          |
+| ---------- | ---------------------------- |
+| Drupal     | https://drupal-dev.ddev.site |
+| phpMyAdmin | `ddev phpmyadmin` で起動     |
 
-```bash
-lando info
-```
-
-| サービス    | URL                                |
-| ----------- | ---------------------------------- |
-| Drupal      | https://drupal-dev.lndo.site       |
-| phpMyAdmin  | https://pma.drupal-dev.lndo.site   |
+**管理者アカウント:** `admin` / `admin`
 
 ## 開発ワークフロー
 
-### Phase 1: 静的HTML開発
+### Phase 1: 静的 HTML 開発
 
 ```bash
 cd frontend
@@ -106,7 +93,7 @@ npm run dev
 npm run build
 ```
 
-### Phase 2: Drupalテーマ開発
+### Phase 2: Drupal テーマ開発
 
 ```bash
 cd frontend
@@ -118,35 +105,44 @@ npm run dev:drupal
 npm run build:drupal
 ```
 
-SCSS/TSを編集すると `web/themes/custom/my_theme/css/` と `js/` に自動で出力されます。
+SCSS/TS を編集すると `web/themes/custom/my_theme/css/` と `js/` に自動で出力されます。
 
 ## npm scripts
 
-| コマンド            | 説明                                      |
-| ------------------- | ----------------------------------------- |
-| `npm run dev`       | 静的HTML開発サーバー起動                  |
-| `npm run build`     | 静的HTMLビルド（`frontend/dist`）         |
-| `npm run dev:drupal`| Drupalテーマに出力（watchモード）         |
-| `npm run build:drupal` | Drupalテーマに本番ビルド               |
-| `npm run lint`      | ESLint + Stylelint 実行                   |
-| `npm run lint:fix`  | Lint エラーを自動修正                     |
-| `npm run format`    | Prettier でフォーマット                   |
+| コマンド               | 説明                                |
+| ---------------------- | ----------------------------------- |
+| `npm run dev`          | 静的 HTML 開発サーバー起動          |
+| `npm run build`        | 静的 HTML ビルド（`frontend/dist`） |
+| `npm run dev:drupal`   | Drupal テーマに出力（watch モード） |
+| `npm run build:drupal` | Drupal テーマに本番ビルド           |
+| `npm run lint`         | ESLint + Stylelint 実行             |
+| `npm run lint:fix`     | Lint エラーを自動修正               |
+| `npm run format`       | Prettier でフォーマット             |
 
-## Lando コマンド
+## DDEV コマンド
 
-| コマンド            | 説明                       |
-| ------------------- | -------------------------- |
-| `lando start`       | 環境起動                   |
-| `lando stop`        | 環境停止                   |
-| `lando rebuild`     | 環境再構築                 |
-| `lando drush <cmd>` | Drushコマンド実行          |
-| `lando composer <cmd>` | Composerコマンド実行    |
-| `lando ssh`         | appserverにSSH接続         |
-| `lando info`        | 接続情報表示               |
+| コマンド              | 説明                    |
+| --------------------- | ----------------------- |
+| `ddev start`          | 環境起動                |
+| `ddev stop`           | 環境停止                |
+| `ddev restart`        | 環境再起動              |
+| `ddev drush <cmd>`    | Drush コマンド実行      |
+| `ddev composer <cmd>` | Composer コマンド実行   |
+| `ddev ssh`            | web コンテナに SSH 接続 |
+| `ddev describe`       | 接続情報表示            |
+| `ddev phpmyadmin`     | phpMyAdmin を開く       |
+| `ddev xdebug on`      | Xdebug を有効化         |
+| `ddev xdebug off`     | Xdebug を無効化         |
 
 ## Xdebug
 
-### VSCode設定
+### 有効化
+
+```bash
+ddev xdebug on
+```
+
+### VSCode 設定
 
 `.vscode/launch.json` を作成：
 
@@ -160,7 +156,7 @@ SCSS/TSを編集すると `web/themes/custom/my_theme/css/` と `js/` に自動�
       "request": "launch",
       "port": 9003,
       "pathMappings": {
-        "/app": "${workspaceFolder}"
+        "/var/www/html": "${workspaceFolder}"
       }
     }
   ]
@@ -169,22 +165,32 @@ SCSS/TSを編集すると `web/themes/custom/my_theme/css/` と `js/` に自動�
 
 ## トラブルシューティング
 
-### Lando起動エラー
+### DDEV 起動エラー
 
 ```bash
-lando rebuild -y
+ddev restart
 ```
 
 ### キャッシュクリア
 
 ```bash
-lando drush cr
+ddev drush cr
 ```
 
-### npm依存関係エラー
+### npm 依存関係エラー
 
 ```bash
 cd frontend
 rm -rf node_modules package-lock.json
 npm install
+```
+
+### セットアップを最初からやり直す
+
+```bash
+# データベースとDrupalファイルを削除して再セットアップ
+ddev stop
+ddev delete -O
+rm -rf web vendor composer.json composer.lock
+ddev start
 ```
