@@ -1,0 +1,14 @@
+name: My Theme
+type: theme
+description: 'Custom theme for Drupal Dev'
+core_version_requirement: ^10 || ^11
+base theme: false
+
+libraries:
+  - my_theme/global
+
+regions:
+  header: Header
+  content: Content
+  sidebar: Sidebar
+  footer: Footer

@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-recess-order",
+    "stylelint-prettier/recommended"
+  ],
+  "rules": {
+    "selector-class-pattern": null,
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind", "apply", "layer", "config"]
+      }
+    ],
+    "declaration-empty-line-before": null,
+    "no-descending-specificity": null,
+    "scss/dollar-variable-empty-line-before": null
+  },
+  "ignoreFiles": ["dist/**/*", "node_modules/**/*"]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "drupal-dev-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "dev:drupal": "webpack --watch --mode development --env output=drupal",
+    "build:drupal": "webpack --mode production --env output=drupal",
+    "lint": "npm run lint:ts && npm run lint:scss",
+    "lint:ts": "eslint src/ts --ext .ts",
+    "lint:scss": "stylelint 'src/scss/**/*.scss'",
+    "lint:fix": "npm run lint:ts -- --fix && npm run lint:scss -- --fix",
+    "format": "prettier --write 'src/**/*.{ts,scss,ejs}'",
+    "prepare": "cd .. && husky frontend/.husky"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-typescript": "^7.24.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "css-minimizer-webpack-plugin": "^6.0.0",
+    "ejs": "^3.1.10",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "html-webpack-plugin": "^5.6.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "mini-css-extract-plugin": "^2.8.0",
+    "prettier": "^3.2.0",
+    "sass": "^1.71.0",
+    "sass-loader": "^14.1.0",
+    "stylelint": "^16.2.0",
+    "stylelint-config-recess-order": "^5.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-prettier": "^5.0.0",
+    "typescript": "^5.4.0",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.ejs": [
+      "prettier --write"
+    ]
+  }
+}

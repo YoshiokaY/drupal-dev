@@ -1,0 +1,55 @@
+@use '../foundation/variables' as *;
+@use '../foundation/mixin' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $color-bg;
+  border-bottom: 1px solid $color-border;
+}
+
+.header_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+
+  @include content-width;
+
+  @include mq() {
+    height: 8rem;
+  }
+}
+
+.header_logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $color-primary;
+
+  @include mq() {
+    font-size: 2.4rem;
+  }
+}
+
+.header_nav_list {
+  display: flex;
+  gap: 1.6rem;
+
+  @include mq() {
+    gap: 2.4rem;
+  }
+}
+
+.header_nav_link {
+  font-size: 1.4rem;
+  transition: color $transition-base;
+
+  @include mq() {
+    font-size: 1.6rem;
+  }
+
+  @include hover {
+    color: $color-primary;
+  }
+}

@@ -1,0 +1,29 @@
+@use '../foundation/variables' as *;
+@use '../foundation/mixin' as *;
+
+.footer {
+  background-color: $color-bg-gray;
+  border-top: 1px solid $color-border;
+}
+
+.footer_inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 2rem;
+
+  @include content-width;
+
+  @include mq() {
+    padding-block: 3rem;
+  }
+}
+
+.footer_copyright {
+  font-size: 1.2rem;
+  color: $color-text-light;
+
+  @include mq() {
+    font-size: 1.4rem;
+  }
+}

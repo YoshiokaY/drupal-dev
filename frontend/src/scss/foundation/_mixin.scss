@@ -1,0 +1,48 @@
+@use 'variables' as *;
+
+// Media query mixin (mobile first)
+@mixin mq($breakpoint: pc) {
+  @if $breakpoint == sp {
+    @media screen and (max-width: $breakpoint-sp) {
+      @content;
+    }
+  } @else if $breakpoint == tab {
+    @media screen and (min-width: $breakpoint-tab) {
+      @content;
+    }
+  } @else if $breakpoint == pc {
+    @media screen and (min-width: $breakpoint-pc) {
+      @content;
+    }
+  }
+}
+
+// Content wrapper
+@mixin content-width {
+  width: 100%;
+  max-width: $content-width;
+  margin-inline: auto;
+  padding-inline: $content-padding;
+}
+
+// Hover effect (hover対応デバイスのみ)
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Screen reader only
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

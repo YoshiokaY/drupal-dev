@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lando version:*)",
+      "Bash(composer --version:*)",
+      "Bash(docker:*)"
+    ]
+  }
+}
