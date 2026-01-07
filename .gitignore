@@ -36,7 +36,5 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# Lando
-.lando.local.yml
 /.editorconfig
 /.gitattributes
