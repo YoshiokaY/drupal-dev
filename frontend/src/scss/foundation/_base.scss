@@ -54,6 +54,19 @@ body {
   }
 }
 
+// Breakpoint visibility utilities
+.sp-only {
+  @media screen and (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+.pc-only {
+  @media screen and (max-width: 767px) {
+    display: none !important;
+  }
+}
+
 // Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *,

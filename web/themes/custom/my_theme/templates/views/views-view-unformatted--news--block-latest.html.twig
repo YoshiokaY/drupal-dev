@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for latest news view (block display).
+ *
+ * Displays news items in a 3-column card grid.
+ */
+#}
+{% if rows %}
+  <ul class="news_list">
+    {% for row in rows %}
+      <li>
+        {{- row.content -}}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

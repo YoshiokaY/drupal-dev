@@ -2,28 +2,97 @@
 @use '../foundation/mixin' as *;
 
 .footer {
-  background-color: $color-bg-gray;
-  border-top: 1px solid $color-border;
+  background-color: $color-text;
+  color: #fff;
 }
 
 .footer_inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-block: 2rem;
+  padding-block: 4rem 2rem;
 
   @include content-width;
 
   @include mq() {
-    padding-block: 3rem;
+    padding-block: 6rem 3rem;
+  }
+}
+
+.footer_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding-bottom: 2.4rem;
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
+
+  @include mq() {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    padding-bottom: 3.2rem;
+  }
+}
+
+.footer_brand {
+  text-align: center;
+
+  @include mq() {
+    text-align: left;
+  }
+}
+
+.footer_logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+
+  @include mq() {
+    font-size: 2.4rem;
+  }
+}
+
+.footer_tagline {
+  margin-top: 0.8rem;
+  font-size: 1.3rem;
+  color: rgb(255 255 255 / 70%);
+
+  @include mq() {
+    font-size: 1.4rem;
+  }
+}
+
+.footer_nav_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem 2rem;
+
+  @include mq() {
+    gap: 1.6rem 2.4rem;
+  }
+}
+
+.footer_nav_link {
+  font-size: 1.3rem;
+  color: rgb(255 255 255 / 80%);
+  transition: color $transition-base;
+
+  @include mq() {
+    font-size: 1.4rem;
+  }
+
+  @include hover {
+    color: #fff;
   }
 }
 
 .footer_copyright {
+  margin-top: 2.4rem;
   font-size: 1.2rem;
-  color: $color-text-light;
+  color: rgb(255 255 255 / 60%);
+  text-align: center;
 
   @include mq() {
-    font-size: 1.4rem;
+    margin-top: 3.2rem;
+    font-size: 1.3rem;
   }
 }

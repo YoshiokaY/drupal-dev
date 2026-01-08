@@ -7,12 +7,12 @@
 <div class="layout_container">
   <header class="header" role="banner">
     <div class="header_inner">
-      {{ page.header }}
-      {% if page.primary_menu %}
-        <nav class="header_nav" role="navigation">
-          {{ page.primary_menu }}
-        </nav>
-      {% endif %}
+      <a href="{{ path('<front>') }}" class="header_logo">
+        <span>Sample Corp.</span>
+      </a>
+      <nav class="header_nav" aria-label="{{ 'Main navigation'|t }}">
+        {{ page.primary_menu }}
+      </nav>
     </div>
   </header>
 
@@ -42,28 +42,23 @@
 
   <main class="main" role="main">
     <a id="main-content" tabindex="-1"></a>
-    <div class="main_inner">
-      <div class="main_content">
-        {{ page.content }}
-      </div>
-
-      {% if page.sidebar_first %}
-        <aside class="sidebar sidebar-first" role="complementary">
-          {{ page.sidebar_first }}
-        </aside>
-      {% endif %}
-
-      {% if page.sidebar_second %}
-        <aside class="sidebar sidebar-second" role="complementary">
-          {{ page.sidebar_second }}
-        </aside>
-      {% endif %}
-    </div>
+    {{ page.content }}
   </main>
 
   <footer class="footer" role="contentinfo">
     <div class="footer_inner">
-      {{ page.footer }}
+      <div class="footer_content">
+        <div class="footer_brand">
+          <p class="footer_logo">Sample Corp.</p>
+          <p class="footer_tagline">{{ 'ビジネスを成功に導くパートナー'|t }}</p>
+        </div>
+        <nav class="footer_nav" aria-label="{{ 'Footer navigation'|t }}">
+          {{ page.footer }}
+        </nav>
+      </div>
+      <p class="footer_copyright">
+        <small>&copy; {{ 'now'|date('Y') }} Sample Corp. All rights reserved.</small>
+      </p>
     </div>
   </footer>
 </div>

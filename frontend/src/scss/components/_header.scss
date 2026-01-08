@@ -6,7 +6,7 @@
   top: 0;
   z-index: 100;
   background-color: $color-bg;
-  border-bottom: 1px solid $color-border;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
 }
 
 .header_inner {
@@ -23,33 +23,70 @@
 }
 
 .header_logo {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: $color-primary;
+  text-decoration: none;
+  transition: opacity $transition-base;
 
   @include mq() {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
+  }
+
+  @include hover {
+    opacity: 0.8;
+  }
+}
+
+.header_nav {
+  display: none;
+
+  @include mq() {
+    display: block;
   }
 }
 
 .header_nav_list {
   display: flex;
-  gap: 1.6rem;
+  align-items: center;
+  gap: 0.8rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   @include mq() {
-    gap: 2.4rem;
+    gap: 0.4rem;
   }
 }
 
+.header_nav_item {
+  list-style: none;
+}
+
 .header_nav_link {
+  display: block;
+  padding: 0.8rem 1.2rem;
   font-size: 1.4rem;
-  transition: color $transition-base;
+  font-weight: 500;
+  color: $color-text;
+  text-decoration: none;
+  border-radius: 0.6rem;
+  transition:
+    color $transition-base,
+    background-color $transition-base;
 
   @include mq() {
-    font-size: 1.6rem;
+    padding: 1rem 1.6rem;
+    font-size: 1.5rem;
   }
 
   @include hover {
     color: $color-primary;
+    background-color: $color-primary-light;
+  }
+
+  &[aria-current='page'] {
+    color: $color-primary;
+    font-weight: 600;
   }
 }

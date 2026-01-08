@@ -3,37 +3,206 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Drupal開発環境のトップページです" />
-    <title>Home | Drupal Dev</title>
+    <meta name="description" content="お客様のビジネスを成功に導くパートナーとして、最適なソリューションをご提供いたします。" />
+    <title>株式会社サンプル | ビジネスを成功に導くパートナー</title>
   </head>
   <body>
     <%- include('../components/header') %>
 
     <main class="main">
+      <!-- Hero Section -->
       <section class="hero">
         <div class="hero_inner">
-          <h1 class="hero_ttl">テーマ</h1>
-          <p class="hero_desc">静的HTML開発環境からDrupalテーマへ</p>
+          <h1 class="hero_ttl">
+            ビジネスの<span class="hero_ttl-accent">成長</span>を<br />
+            共に実現するパートナー
+          </h1>
+          <p class="hero_desc">
+            私たちは、お客様の課題を深く理解し、<br class="sp-only" />
+            最適なソリューションで解決へと導きます。<br />
+            信頼と実績で、あなたのビジネスを次のステージへ。
+          </p>
+          <div class="hero_actions">
+            <a href="/contact.html" class="btn btn-primary btn-lg">お問い合わせ</a>
+            <a href="/about.html" class="btn btn-secondary btn-lg">詳しく見る</a>
+          </div>
         </div>
       </section>
 
+      <!-- News Section -->
       <section class="section">
         <div class="section_inner">
-          <h2 class="section_ttl">Features</h2>
-          <ul class="feature_list">
-            <li class="feature_list-item">
-              <h3 class="feature_ttl">Webpack</h3>
-              <p class="feature_desc">モダンなビルド環境</p>
+          <header class="section_header">
+            <h2 class="section_ttl">お知らせ</h2>
+            <p class="section_lead">
+              最新のニュースやイベント情報をお届けします。
+            </p>
+          </header>
+          <ul class="news_list">
+            <li class="news_card">
+              <a href="/news/001.html" class="news_card_link">
+                <div class="news_card_thumb">
+                  <img src="https://placehold.co/400x240/e2e8f0/64748b?text=News" alt="" width="400" height="240" loading="lazy" />
+                </div>
+                <div class="news_card_body">
+                  <div class="news_card_meta">
+                    <time class="news_card_date" datetime="2025-01-06">2025.01.06</time>
+                    <span class="news_card_category">お知らせ</span>
+                  </div>
+                  <h3 class="news_card_ttl">年末年始休業のお知らせ</h3>
+                  <p class="news_card_desc">誠に勝手ながら、下記の期間を年末年始休業とさせていただきます。ご不便をおかけいたしますが...</p>
+                </div>
+              </a>
             </li>
-            <li class="feature_list-item">
-              <h3 class="feature_ttl">TypeScript</h3>
-              <p class="feature_desc">型安全なJavaScript開発</p>
+            <li class="news_card">
+              <a href="/news/002.html" class="news_card_link">
+                <div class="news_card_thumb">
+                  <img src="https://placehold.co/400x240/dcfce7/166534?text=Event" alt="" width="400" height="240" loading="lazy" />
+                </div>
+                <div class="news_card_body">
+                  <div class="news_card_meta">
+                    <time class="news_card_date" datetime="2024-12-20">2024.12.20</time>
+                    <span class="news_card_category">イベント</span>
+                  </div>
+                  <h3 class="news_card_ttl">オンラインセミナー開催のご案内</h3>
+                  <p class="news_card_desc">業務効率化をテーマにしたオンラインセミナーを開催いたします。ぜひご参加ください...</p>
+                </div>
+              </a>
             </li>
-            <li class="feature_list-item">
-              <h3 class="feature_ttl">SCSS</h3>
-              <p class="feature_desc">効率的なスタイル管理</p>
+            <li class="news_card">
+              <a href="/news/003.html" class="news_card_link">
+                <div class="news_card_thumb">
+                  <img src="https://placehold.co/400x240/fef3c7/92400e?text=Press" alt="" width="400" height="240" loading="lazy" />
+                </div>
+                <div class="news_card_body">
+                  <div class="news_card_meta">
+                    <time class="news_card_date" datetime="2024-12-15">2024.12.15</time>
+                    <span class="news_card_category">プレスリリース</span>
+                  </div>
+                  <h3 class="news_card_ttl">新サービス「ビジネスサポートプラン」を開始</h3>
+                  <p class="news_card_desc">中小企業様向けの新しいサポートプランの提供を開始いたしました。詳細はこちらから...</p>
+                </div>
+              </a>
             </li>
           </ul>
+          <div class="section_more">
+            <a href="/news/" class="btn btn-secondary">お知らせ一覧を見る</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Section -->
+      <section class="section section-gray">
+        <div class="section_inner">
+          <header class="section_header">
+            <h2 class="section_ttl">サービス</h2>
+            <p class="section_lead">
+              お客様のニーズに合わせた幅広いサービスで、<br class="pc-only" />
+              ビジネスの成功をサポートいたします。
+            </p>
+          </header>
+          <ul class="service_list">
+            <li class="service_item">
+              <div class="service_icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <h3 class="service_ttl">コンサルティング</h3>
+              <p class="service_desc">
+                課題分析から戦略立案まで、経験豊富なコンサルタントがお客様のビジネスを丁寧にサポートいたします。
+              </p>
+            </li>
+            <li class="service_item">
+              <div class="service_icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <h3 class="service_ttl">システム開発</h3>
+              <p class="service_desc">
+                業務効率化や新規事業に必要なシステムを、企画からデリバリーまでワンストップでご提供いたします。
+              </p>
+            </li>
+            <li class="service_item">
+              <div class="service_icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="service_ttl">人材支援</h3>
+              <p class="service_desc">
+                専門スキルを持つ人材のご紹介や、チーム体制の構築支援など、人材面からビジネスを支援いたします。
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Feature Section -->
+      <section class="section section-gray">
+        <div class="section_inner">
+          <header class="section_header">
+            <h2 class="section_ttl">選ばれる理由</h2>
+            <p class="section_lead">
+              多くのお客様に選ばれ続ける、<br class="pc-only" />
+              私たちの強みをご紹介します。
+            </p>
+          </header>
+          <ul class="feature_list">
+            <li class="feature_item">
+              <div class="feature_icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="feature_content">
+                <h3 class="feature_ttl">豊富な実績</h3>
+                <p class="feature_desc">
+                  創業以来、500社以上の企業様を支援してまいりました。様々な業界での経験を活かし、最適なソリューションをご提案します。
+                </p>
+              </div>
+            </li>
+            <li class="feature_item">
+              <div class="feature_icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="feature_content">
+                <h3 class="feature_ttl">迅速な対応</h3>
+                <p class="feature_desc">
+                  お問い合わせから24時間以内にご連絡いたします。スピード感を持って、お客様の課題解決に取り組みます。
+                </p>
+              </div>
+            </li>
+            <li class="feature_item">
+              <div class="feature_icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div class="feature_content">
+                <h3 class="feature_ttl">手厚いサポート</h3>
+                <p class="feature_desc">
+                  プロジェクト完了後も継続的なサポートをご提供。長期的なパートナーとしてお客様に寄り添います。
+                </p>
+              </div>
+            </li>
+            <li class="feature_item">
+              <div class="feature_icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div class="feature_content">
+                <h3 class="feature_ttl">高い専門性</h3>
+                <p class="feature_desc">
+                  各分野のエキスパートが在籍。最新の知見と技術で、質の高いサービスをお届けします。
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta">
+        <div class="cta_inner">
+          <h2 class="cta_ttl">まずはお気軽にご相談ください</h2>
+          <p class="cta_desc">
+            お客様のビジネスに関するお悩みやご要望をお聞かせください。<br class="pc-only" />
+            専門スタッフが丁寧にご対応いたします。
+          </p>
+          <div class="cta_actions">
+            <a href="/contact.html" class="btn btn-white btn-lg">お問い合わせはこちら</a>
+          </div>
         </div>
       </section>
     </main>

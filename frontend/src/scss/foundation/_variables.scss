@@ -1,12 +1,15 @@
-// Colors
-$color-primary: #0073e6;
-$color-primary-dark: #005bb5;
-$color-secondary: #6c757d;
-$color-text: #333;
-$color-text-light: #666;
+// Colors - 親しみやすさ重視のカラーパレット
+$color-primary: #10b981; // エメラルドグリーン（信頼感＋親しみやすさ）
+$color-primary-light: #d1fae5;
+$color-primary-dark: #059669;
+$color-secondary: #f59e0b; // アンバー（温かみのあるアクセント）
+$color-secondary-dark: #d97706;
+$color-text: #1f2937;
+$color-text-light: #6b7280;
 $color-bg: #fff;
-$color-bg-gray: #f5f5f5;
-$color-border: #ddd;
+$color-bg-gray: #f9fafb;
+$color-bg-accent: #ecfdf5; // 薄いグリーン背景
+$color-border: #e5e7eb;
 
 // Typography
 $font-family-base: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic Medium', 'Yu Gothic',

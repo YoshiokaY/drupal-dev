@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for news item in latest news block.
+ *
+ * Renders each news item as a card component.
+ */
+#}
+{% include '@my_theme/partials/news-card.html.twig' with {
+  'url': fields.view_node.content|striptags|trim,
+  'image': fields.field_image.content,
+  'date': fields.created.content|striptags|trim,
+  'category': fields.field_category.content|striptags|trim,
+  'title': fields.title.content|striptags|trim,
+  'summary': fields.body.content|striptags|trim,
+} %}

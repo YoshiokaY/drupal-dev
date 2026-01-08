@@ -1,11 +1,13 @@
 @use '../foundation/variables' as *;
 @use '../foundation/mixin' as *;
 
-// Hero
+// ============================================
+// Hero Section
+// ============================================
 .hero {
   padding-block: 6rem;
   text-align: center;
-  background-color: $color-bg-gray;
+  background: linear-gradient(135deg, $color-bg-accent 0%, $color-bg 100%);
 
   @include mq() {
     padding-block: 10rem;
@@ -20,24 +22,47 @@
   font-size: 2.8rem;
   font-weight: 700;
   line-height: 1.3;
+  color: $color-text;
 
   @include mq() {
     font-size: 4.8rem;
   }
 }
 
+.hero_ttl-accent {
+  color: $color-primary;
+}
+
 .hero_desc {
+  max-width: 64rem;
   margin-top: 1.6rem;
+  margin-inline: auto;
   font-size: 1.6rem;
+  line-height: 1.8;
   color: $color-text-light;
 
   @include mq() {
-    margin-top: 2rem;
+    margin-top: 2.4rem;
     font-size: 2rem;
   }
 }
 
-// Section
+.hero_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 3.2rem;
+
+  @include mq() {
+    gap: 1.6rem;
+    margin-top: 4rem;
+  }
+}
+
+// ============================================
+// Section Base
+// ============================================
 .section {
   padding-block: 6rem;
 
@@ -46,24 +71,181 @@
   }
 }
 
+.section-gray {
+  background-color: $color-bg-gray;
+}
+
 .section_inner {
   @include content-width;
 }
 
-.section_ttl {
-  margin-bottom: 3rem;
-  font-size: 2.4rem;
-  font-weight: 700;
+.section_header {
+  margin-bottom: 4rem;
   text-align: center;
 
   @include mq() {
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
+  }
+}
+
+.section_ttl {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: $color-text;
+
+  @include mq() {
     font-size: 3.2rem;
   }
 }
 
-// Feature list
-.feature_list {
+.section_lead {
+  max-width: 64rem;
+  margin-top: 1.2rem;
+  margin-inline: auto;
+  font-size: 1.4rem;
+  color: $color-text-light;
+
+  @include mq() {
+    margin-top: 1.6rem;
+    font-size: 1.6rem;
+  }
+}
+
+.section_more {
+  margin-top: 4rem;
+  text-align: center;
+
+  @include mq() {
+    margin-top: 5rem;
+  }
+}
+
+// ============================================
+// News Section
+// ============================================
+.news_list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include mq() {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+  }
+}
+
+.news_card {
+  list-style: none;
+}
+
+.news_card_link {
+  display: block;
+  overflow: hidden;
+  background-color: $color-bg;
+  border-radius: 1.2rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  text-decoration: none;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+
+  @include hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 12%);
+
+    .news_card_thumb img {
+      transform: scale(1.05);
+    }
+
+    .news_card_ttl {
+      color: $color-primary;
+    }
+  }
+}
+
+.news_card_thumb {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 5 / 3;
+  background-color: $color-bg-gray;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-base;
+  }
+}
+
+.news_card_body {
+  padding: 2rem;
+
+  @include mq() {
+    padding: 2.4rem;
+  }
+}
+
+.news_card_meta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.news_card_date {
+  font-size: 1.3rem;
+  color: $color-text-light;
+
+  @include mq() {
+    font-size: 1.4rem;
+  }
+}
+
+.news_card_category {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $color-primary-dark;
+  background-color: $color-primary-light;
+  border-radius: 0.4rem;
+
+  @include mq() {
+    font-size: 1.2rem;
+  }
+}
+
+.news_card_ttl {
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: $color-text;
+  transition: color $transition-base;
+
+  @include mq() {
+    font-size: 1.7rem;
+  }
+}
+
+.news_card_desc {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: $color-text-light;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  @include mq() {
+    font-size: 1.4rem;
+  }
+}
+
+// ============================================
+// Service Section
+// ============================================
+.service_list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -74,32 +256,187 @@
   }
 }
 
-.feature_list-item {
-  padding: 2.4rem;
+.service_item {
+  padding: 3.2rem 2.4rem;
   text-align: center;
-  background-color: $color-bg-gray;
-  border-radius: 0.8rem;
+  background-color: $color-bg;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+  transition: transform $transition-base, box-shadow $transition-base;
 
   @include mq() {
+    padding: 4rem 3.2rem;
+  }
+
+  @include hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+  }
+}
+
+.service_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.4rem;
+  height: 6.4rem;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  font-size: 3.2rem;
+  background-color: $color-primary-light;
+  border-radius: 50%;
+
+  @include mq() {
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 2.4rem;
+    font-size: 4rem;
+  }
+}
+
+.service_ttl {
+  margin-bottom: 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: $color-text;
+
+  @include mq() {
+    font-size: 2rem;
+  }
+}
+
+.service_desc {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: $color-text-light;
+
+  @include mq() {
+    font-size: 1.5rem;
+  }
+}
+
+// ============================================
+// Feature Section
+// ============================================
+.feature_list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include mq() {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem;
+  }
+}
+
+.feature_item {
+  display: flex;
+  gap: 1.6rem;
+  padding: 2.4rem;
+  background-color: $color-bg;
+  border-radius: 0.8rem;
+  border-left: 4px solid $color-primary;
+
+  @include mq() {
+    gap: 2rem;
     padding: 3.2rem;
   }
 }
 
-.feature_ttl {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  font-weight: 600;
+.feature_icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  font-size: 2.4rem;
+  color: $color-primary;
+  background-color: $color-primary-light;
+  border-radius: 0.8rem;
 
   @include mq() {
-    font-size: 2.4rem;
+    width: 5.6rem;
+    height: 5.6rem;
+    font-size: 2.8rem;
+  }
+}
+
+.feature_content {
+  flex: 1;
+}
+
+.feature_ttl {
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $color-text;
+
+  @include mq() {
+    font-size: 1.8rem;
   }
 }
 
 .feature_desc {
   font-size: 1.4rem;
+  line-height: 1.7;
   color: $color-text-light;
 
   @include mq() {
+    font-size: 1.5rem;
+  }
+}
+
+// ============================================
+// CTA Section
+// ============================================
+.cta {
+  padding-block: 6rem;
+  text-align: center;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+
+  @include mq() {
+    padding-block: 8rem;
+  }
+}
+
+.cta_inner {
+  @include content-width;
+}
+
+.cta_ttl {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+
+  @include mq() {
+    font-size: 3.2rem;
+  }
+}
+
+.cta_desc {
+  max-width: 56rem;
+  margin-top: 1.6rem;
+  margin-inline: auto;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: rgb(255 255 255 / 90%);
+
+  @include mq() {
+    margin-top: 2rem;
     font-size: 1.6rem;
+  }
+}
+
+.cta_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 3.2rem;
+
+  @include mq() {
+    gap: 1.6rem;
+    margin-top: 4rem;
   }
 }

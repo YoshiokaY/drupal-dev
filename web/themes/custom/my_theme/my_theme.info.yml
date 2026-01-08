@@ -7,6 +7,12 @@ base theme: false
 libraries:
   - my_theme/global
 
+# Twig namespace for partial includes
+component-libraries:
+  my_theme:
+    paths:
+      - templates
+
 regions:
   header: Header
   primary_menu: Primary Menu
